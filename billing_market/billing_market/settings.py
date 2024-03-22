@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'invoices',
     'orders',
     'reports',
+    'corsheaders',
 ]
 
 AUTH_USER_MODEL = 'auth_app.User'
@@ -56,6 +57,7 @@ AUTH_USER_MODEL = 'auth_app.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -145,3 +147,8 @@ EMAIL_HOST=env('EMAIL_HOST')
 EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS=env('EMAIL_USE_TLS')
 EMAIL_PORT=env('EMAIL_PORT')
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]

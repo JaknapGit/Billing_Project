@@ -13,9 +13,9 @@ class Offers(models.Model):
 class GST(models.Model):
     gst_id = models.BigAutoField(primary_key=True)
     hsn_code = models.CharField(max_length=20, blank=True)
-    cgst = models.FloatField(blank=True)
-    sgst = models.FloatField(blank=True)
-    igst = models.FloatField(blank=True)
+    cgst = models.FloatField(default=0.0, blank=True)
+    sgst = models.FloatField(default=0.0, blank=True)
+    igst = models.FloatField(default=0.0, blank=True)
 
     def __str__(self) -> str:
         return f'{self.hsn_code}'
@@ -37,6 +37,6 @@ class Product(models.Model):
     product_quantity = models.PositiveIntegerField(default=0)
     product_total_cost = models.FloatField(default=0.0)
     product_gst = models.ForeignKey(GST, on_delete=models.CASCADE, related_name='gst_products', blank=True)    
-
+ 
     def __str__(self) -> str:
         return f'{self.product_name}'

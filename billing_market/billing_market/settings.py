@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "corsheaders",
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework.authtoken',
     'phonenumber_field',
     'auth_app',
     'inventory',
@@ -56,6 +58,7 @@ AUTH_USER_MODEL = 'auth_app.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -140,8 +143,49 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_logger': False,
+#     'formatters': {
+#         'simple': {
+#             'formate': '{levelname} {asctime} {module} {message}',
+#             'style': '{',
+#         }
+#     },
+#     'handlers': {
+#         'console': {
+#             'class' : 'logging.StreamHandler',
+#             'formatter' : 'simple'
+#         },
+#         'error_handler': {
+#             'level' : 'ERROR',
+#             'class': 'logging.FileHandler',
+#             'filename': 'error.log',
+#             'formatter': 'simple',
+#         },
+#         'success_handler': {
+#             'level' : 'INFO',
+#             'class': 'logging.FileHandler',
+#             'filename' : 'success.log',
+#             'formatter': 'simple',
+#         }
+#     },
+#     'loggers': {
+#         'mylogger':{
+#             'handlers': ['console', 'error_handler', 'success_handler'],
+#             'level': 'INFO',
+#         }
+#     }
+# }
+
 EMAIL_HOST_USER=env('EMAIL_HOST_USER')
 EMAIL_HOST=env('EMAIL_HOST')
 EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS=env('EMAIL_USE_TLS')
 EMAIL_PORT=env('EMAIL_PORT')
+
+CORS_ORIGIN_WHITELIST = [
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+]
+

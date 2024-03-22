@@ -28,3 +28,4 @@ class OrderProducts(models.Model):
     order_product_cost_per_quantity = models.FloatField(blank=True)
     order_product_total_cost = models.FloatField(blank=True)
     order_product_total_cost_with_gst = models.FloatField(blank=True)
+    order = models.ForeignKey(Orders, on_delete=models.DO_NOTHING, related_name='orderProduct', blank=True)

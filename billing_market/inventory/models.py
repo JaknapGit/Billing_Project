@@ -29,7 +29,7 @@ class ProductCategory(models.Model):
     
 class Product(models.Model):
     product_id = models.BigAutoField(primary_key=True)
-    product_name = models.CharField(max_length=30)
+    product_name = models.CharField(unique=True, max_length=30)
     product_cost_per_quantity = models.FloatField(default= 0.0)
     product_cost_with_gst = models.FloatField(default=0.0)
     product_category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, related_name='products')
